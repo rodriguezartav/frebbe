@@ -1,0 +1,113 @@
+@import './mixin'
+@import './theme'
+
+body, html,h1,h2,h3,h4,h5,ul,li,p
+	margin: 0;
+	padding: 0;
+
+*
+	vertical-align: top
+
+ul , li
+	list-style: none
+
+body
+	height: 100%
+	width: 100%
+	overflow: hidden
+
+.pages
+	margin-top: 40px
+	.social
+		float: left
+		width: 230px
+		height: 100%
+
+	.slides_canvas
+		display: block
+		overflow: auto
+		position: relative
+		margin-left: 15px
+
+		.viewport
+			position: absolute
+			width: 3000px
+
+			.item
+				display: inline-block
+				overflow: hidden
+
+				.menu
+					height: 100%
+					display: inline-block
+					width: 256px
+
+					.box_wrapper
+						height: 99%
+						margin: 0px 50px 0px 6px
+						border: 1px solid #e9e9e9
+						padding: 0px 5px
+
+						span
+							cursor: pointer
+							display: block
+							padding: 5px 5px
+							&:first-child
+								margin-top: 5px
+							&:hover
+								background-color: blue
+
+						input
+							margin: 5px
+							padding: 6px
+							width: 85%
+
+				.content
+					display: inline-block
+					overflow: auto
+					height: 100%
+
+					h1
+						font-size: 22px
+					
+					p
+						font-size: 18px
+						
+					input
+						font-size: 22px
+
+					.box_wrapper
+						border: 1px solid #e9e9e9
+						height: 99%
+						padding: 0px 8px
+
+						.editable
+							margin-top: 4px
+							padding: 5px
+							
+							input
+								width: 90%
+								padding: 7px
+
+							textarea
+								width: 100%
+								padding: 5px
+							
+							&:hover
+								background-color: #e9e9e9
+								
+							input,textarea
+								display: none
+
+							&.editing
+								:first-child
+									display: none
+								input,textarea
+									display: block
+
+
+						img
+							height: 900px
+							width: 600px
+							background-color: #e9e9e9
+							margin: 50px

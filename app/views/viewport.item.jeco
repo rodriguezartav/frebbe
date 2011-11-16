@@ -1,0 +1,26 @@
+<div style="width:<%= @Width %>px;" class="content">
+  <div class="box_wrapper">
+
+		<div data-field="Title" class="editable">
+			<h1><%= @Title %></h1>
+			<input incremental="true" autofocus class="edit" value="<%= @Title %>" />
+		</div>
+
+		<div data-field="Body" class="editable">
+			<p><%= @Body %></p>
+			<textarea incremental="true" autofocus class=edit><%= @Body %></textarea>
+		</div>
+
+	</div>
+</div>
+
+<div class="menu">
+
+	<div class="box_wrapper">
+	  <% for link in @Links: %>
+	    <span data-id="<%= link.id %>"><%= link.name %></span>
+	  <% end %>
+	  <input placeholder="new item"/>
+	</div>
+	
+</div>
