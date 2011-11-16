@@ -33,18 +33,19 @@ body{height:100%;width:100%;overflow:hidden}
 .pages .slides_canvas .viewport .item{display:inline-block;overflow:hidden;}
 .pages .slides_canvas .viewport .item .menu{height:100%;display:inline-block;width:256px;}
 .pages .slides_canvas .viewport .item .menu .box_wrapper{height:99%;margin:0 50px 0 6px;border:1px solid #e9e9e9;padding:0 5px;}
+.pages .slides_canvas .viewport .item .menu .box_wrapper h3{padding:5px}
 .pages .slides_canvas .viewport .item .menu .box_wrapper span{cursor:pointer;display:block;padding:5px 5px;}
 .pages .slides_canvas .viewport .item .menu .box_wrapper span:first-child{margin-top:5px}
 .pages .slides_canvas .viewport .item .menu .box_wrapper span:hover{background-color:#00f}
 .pages .slides_canvas .viewport .item .menu .box_wrapper input{margin:5px;padding:6px;width:85%}
 .pages .slides_canvas .viewport .item .content{display:inline-block;overflow:auto;height:100%;}
 .pages .slides_canvas .viewport .item .content h1{font-size:22px}
-.pages .slides_canvas .viewport .item .content p{font-size:18px}
+.pages .slides_canvas .viewport .item .content p{font-size:17px;line-height:23px;letter-spacing:.1em}
 .pages .slides_canvas .viewport .item .content input{font-size:22px}
 .pages .slides_canvas .viewport .item .content .box_wrapper{border:1px solid #e9e9e9;height:99%;padding:0 8px;}
 .pages .slides_canvas .viewport .item .content .box_wrapper .editable{margin-top:4px;padding:5px;}
 .pages .slides_canvas .viewport .item .content .box_wrapper .editable input{width:90%;padding:7px}
-.pages .slides_canvas .viewport .item .content .box_wrapper .editable textarea{width:100%;padding:5px}
+.pages .slides_canvas .viewport .item .content .box_wrapper .editable textarea{width:100%;padding:5px;height:200px}
 .pages .slides_canvas .viewport .item .content .box_wrapper .editable:hover{background-color:#e9e9e9}
 .pages .slides_canvas .viewport .item .content .box_wrapper .editable input,.pages .slides_canvas .viewport .item .content .box_wrapper .editable textarea{display:none}
 .pages .slides_canvas .viewport .item .content .box_wrapper .editable.editing :first-child{display:none}
