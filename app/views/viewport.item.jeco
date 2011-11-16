@@ -15,8 +15,9 @@
 </div>
 
 <div class="menu">
-
 	<div class="box_wrapper">
+	<h3>Menu</h3>
+	
 	  <% for link in @Links: %>
 	    <span data-id="<%= link.id %>"><%= link.name %></span>
 	  <% end %>
