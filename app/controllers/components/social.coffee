@@ -5,9 +5,12 @@ class Social extends Spine.Controller
 
   constructor: ->
     super
-    #@render()
+    @render()
 
   render: =>
     @html '<h1>Social</h1>'
+
+  set_height: (height) ->
+    @el.height height
 
 module.exports = Social

@@ -11,16 +11,13 @@ class Pages extends Spine.Controller
     @slides = new Slides
     @social = new Social
 
-    @append @social , @slides
-        
-    $(window).resize =>
-      @on_resize()
+    @append  @slides
     
-    @on_resize()
-      
-  on_resize: =>    
-    height = $(window).height()
-    height -= 60
-    @slides.set_height height  
+    @active (id) ->
+      @slides.show_slide id
+        
+  set_height: (height) ->
+    @slides.set_height height
+    @social.set_height height
 
 module.exports = Pages

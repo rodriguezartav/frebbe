@@ -17,11 +17,13 @@
 <div class="menu">
 	<div class="box_wrapper">
 	<h3>Menu</h3>
-	
+		<div class="options">
+			<span data-option="access" class="option"><%= @Access_Name() %></span>
+			<span data-option="width" class="option"><%= @Width %>px</span>
+		</div>
 	  <% for link in @Links: %>
-	    <span data-id="<%= link.id %>"><%= link.name %></span>
+	    <span class="link" data-id="<%= link.id %>"><%= link.name %></span>
 	  <% end %>
-	  <input placeholder="new item"/>
 	</div>
 	
 </div>

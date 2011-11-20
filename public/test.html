@@ -10,12 +10,23 @@
     var exports = this;
     jQuery(function(){
       var App = require("index");
-      exports.app = new App({test: true , el: $("body")});      
+      var Slide = require('models/slide')
+
+      var cat = Slide.create({ id: "ciencia" , Owner: "johnadams@frebbe.com" , Access: 3 , Title: "Ciencia", Media: "#" , Width: 320 , Body: "Frebbe pages on Science. Create yours today" , Links: [ ]})
+
+      var cat = Slide.create({ id: "arquitectura" , Owner: "johnadams@frebbe.com" , Access: 3 , Title: "Arquitectura", Media: "#" , Width: 320 , Body: "Frebbe pages on Arquitecture. Create yours today!!!" , Links: [ ]})
+
+      var start = Slide.create({ id: "frebbe" , Owner: "johnadams@frebbe.com" , Access: 0 , Title: "Frebbe", Media: "#" , Width: 320 , Body: "The Social Network of Knowledge that helps you share your experiences." , Links: [ {id: "ciencia" , name: "Ciencia"} , {id: "arquitectura" , name: "Arquitectura"} ]})
+
+      exports.app = new App({test: true , el: $("#app_canvas") , start: start });
     });
   </script>
   
  </head>
 <body>
 
+	
+	<div id="app_canvas"></div>
+	
 </body>
 </html>

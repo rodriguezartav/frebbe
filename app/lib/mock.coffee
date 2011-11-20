@@ -2,13 +2,6 @@ class Mock
   constructor: ->
   
     $.mockjax 
-      url: '/slide/*',
-      type: 'PUT',
-      responseTime: 750,
-      dataType: "JSON",
-      responseText: "{}"
-  
-    $.mockjax 
       url: '/slides',
       type: 'GET',
       responseTime: 750,
@@ -16,7 +9,8 @@ class Mock
       response: (settings) ->  
         id = settings.data.id
         name = settings.data.name
-        slide1 = {id: Math.random() + "NEW" , Title: name, Media: "#" , Width: 320 , Body: "Esto es una muestra, puede cambiar el titulo, este texto y agregar categorias en la seccion del menu. Para agregar a la seccion del menu escriba el nombre de la categoria y listo!" , Links: [] }
+        owner = settings.data.owner
+        slide1 = {id: id , Owner: owner , Created: true , Access: 2 , Title: name, Media: "#" , Width: 320 , Body: "The Social Network of Knowledge that helps you share your experiences." , Links: [] }
         @responseText =  JSON.stringify(slide1)
 
 module?.exports = Mock

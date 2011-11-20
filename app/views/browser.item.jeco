@@ -1,0 +1,4 @@
+<div class="item">
+	<span><%= @Title %></span>
+</div>
+
