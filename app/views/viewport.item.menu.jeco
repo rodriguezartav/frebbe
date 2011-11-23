@@ -1,4 +1,14 @@
 <div class="box_wrapper">
+
+<% if @configurable: %>
+	<div class="options">
+		<h3>Control</h3>
+		<span data-option="access" class="option"><%= @slide.Access_Name() %></span>
+		<span data-option="width" class="option"><%= @slide.Width %>px</span>
+	</div>
+<% end %>
+
+
 <h3>Menu</h3>
 <% for link in @slide.Links: %>
 	<div data-id="<%= link.id %>" class="item">

@@ -165,7 +165,7 @@ class Item extends Spine.Controller
     #For owner slides
     else if user?.Username == slide.Owner
      @menu.editable = true
-     @menu.configurabe = true
+     @menu.configurable = true
      @content.editable = true
 
     #for admins and super user
