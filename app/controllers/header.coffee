@@ -19,10 +19,9 @@ class Header extends Spine.Controller
   #This does not apply is just for testing
   on_user_change: (e) ->
     target = $(e.target)
-    user = {Name: "John Adams" , Access: 3 , Username: "johnadams@frebbe.com"}
-    user.Access = 0 if target.hasClass "admin" 
-    user.Access = 1 if target.hasClass "super"
-    user.Access = 2 if target.hasClass "user"
+    user = {Name: "John Admin" , Access: 3 , Username: "johnadmin@frebbe.com" , Access: 0} if target.hasClass "admin" 
+    user = {Name: "John Super" , Access: 3 , Username: "johnsuper@frebbe.com" , Access: 1} if target.hasClass "super"
+    user = {Name: "John Doe" , Access: 3 , Username: "johndoe@frebbe.com" , Access: 2} if target.hasClass "user"
     user = User.create user
     User.set_current user
 

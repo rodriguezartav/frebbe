@@ -1,0 +1,12 @@
+<div class="box_wrapper">
+	<div data-field="Title" class="editable">
+		<h1><%= @slide.Title %></h1>
+		<input incremental="true" autofocus class="edit" value="<%= @slide.Title %>" />
+	</div>
+
+	<div data-field="Body" class="editable">
+		<p><%= @slide.Body %></p>
+		<textarea incremental="true" autofocus class=edit><%= @slide.Body %></textarea>
+	</div>
+</div>
+

@@ -1,0 +1,3 @@
+<div data-id="<%= @id %>" class="item">
+	<span><%= @Title %></span>
+</div>

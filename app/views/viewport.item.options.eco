@@ -1,0 +1,5 @@
+<div class="options">
+	<h3>Control</h3>
+	<span data-option="access" class="option"><%= @Access_Name() %></span>
+	<span data-option="width" class="option"><%= @Width %>px</span>
+</div>

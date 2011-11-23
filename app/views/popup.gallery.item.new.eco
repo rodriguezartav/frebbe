@@ -1,0 +1,4 @@
+<div class="create">
+	<textarea placeholder="Type the url or code here"></textarea>
+	<span>Save</span>
+</div>

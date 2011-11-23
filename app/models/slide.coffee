@@ -1,3 +1,7 @@
+#TODO: REMOVE AFTER API IN PLACE
+User = require('models/user')
+
+
 class Slide extends Spine.Model
   @configure "Slide" ,  "Title" , "Body" , "Width" , "Media" , "Links" , "Tags" , "Owner" , "Access" , "Created" , "Parent"
   @extend Spine.Model.Ajax.Methods
@@ -35,7 +39,9 @@ class Slide extends Spine.Model
     temp_slug = temp_slug.replace(/^-|-$/g, '')
     temp_slug
 
-  @fetch: (name , owner) ->
+  @fetch: (name ) ->
+    #ONLY FOR MOCK, IN PRODUCTIN USES COOKIE
+    owner =  User.current.Username
     id = @generate_slug name
     slide = Slide.exists(id)
     if slide and id != null

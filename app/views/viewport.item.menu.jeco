@@ -1,0 +1,14 @@
+<div class="box_wrapper">
+<h3>Menu</h3>
+<% for link in @slide.Links: %>
+	<div data-id="<%= link.id %>" class="item">
+		<span class="link" ><%= link.name %></span>
+		<% if @editable: %>
+			<span class="del">x</span>
+		<% end %>
+	</div>
+<% end %>
+	<% if @editable: %>
+		<input placeholder="new item"/>
+	<% end %>
+</div>

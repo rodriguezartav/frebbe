@@ -3,6 +3,7 @@ Manager = require('spine/lib/manager')
 
 Spine = require('spine')
 Frebbe    = require('controllers/frebbe')
+Popup    = require('controllers/popup')
 Pages    = require('controllers/pages')
 Header    = require('controllers/header')
 Info    = require('controllers/info')
@@ -28,9 +29,10 @@ class App extends Spine.Controller
     @info = new Info
     @pages = new Pages
     @frebbe = new Frebbe
-  
+    @popup = new Popup
+      
     @manager = new Manager(@frebbe, @pages)
-    @append @header , @info , @frebbe , @pages
+    @append @header , @info , @frebbe , @pages , @popup
     
     @routes
       '/browse': (params) -> 

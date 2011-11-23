@@ -3,10 +3,12 @@
 	of <%= @user.Name %>
 </div>
 <div class="login_box">
-	<span class="admin">admin</span>
-	<span class="super">super</span>
-	<span class="user">user</span>
+
 
 	<span>Login with Twitter</span>
 	<span>Login with Facebook</span>
+	
+	<span class="admin">as admin</span>
+	<span class="super">as super</span>
+	<span class="user">as user</span>
 </div>
