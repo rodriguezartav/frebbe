@@ -6,7 +6,7 @@ class Gallery extends Spine.Controller
 
   elements:
     ".list" : "list"  
-    
+
   events:
     "click .type>span" : "on_type_click"
     "click .list>.item" : "on_item_click"
@@ -25,16 +25,17 @@ class Gallery extends Spine.Controller
     @list.prepend require('views/popup.gallery.item.new')
     
   on_type_click: (e) =>
+    @log e
     type = $(e.target).attr "data-type" if e
     type ="image" if !e
     Media.fetch type
     @list.html require('views/popup.gallery.item.loading')()
   
   on_item_click: (e) ->
-    target = $(e.target).parent()
+    target = $(e.target)
     media_id =  target.attr "data-id"
     media = Media.find media_id
-    response = {action: true , object: media , type: media.Type ,options: {}}
+    response = {action: true , object: media ,options: {}}
     Spine.trigger "popup_response"  , response
 
 module.exports = Gallery

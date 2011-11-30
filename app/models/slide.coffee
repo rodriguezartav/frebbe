@@ -3,7 +3,7 @@ User = require('models/user')
 
 
 class Slide extends Spine.Model
-  @configure "Slide" ,  "Title" , "Body" , "Width" , "Media" , "Links" , "Tags" , "Owner" , "Access" , "Created" , "Parent"
+  @configure "Slide" ,  "Title" , "Body" , "Width" , "Media" , "Links" , "Tags" , "Socials" ,"Owner", "Access" , "Created" , "Parent"
   @extend Spine.Model.Ajax.Methods
 
   save: ->

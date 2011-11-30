@@ -1,0 +1,14 @@
+
+<% if @owner: %>
+	<div class="item owner">
+		<img src="user_icons/<%= @owner.Icon %>.png"/>
+		<span>Owner</span>
+	</div>
+<% end %>
+
+<% for item in @slide.Socials: %>
+	<div class="item">
+		<img src="user_icons/stock.png"/>
+		<span>like</span>
+	</div>
+<% end %>

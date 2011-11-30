@@ -1,15 +1,24 @@
 <div class="box_wrapper">
 
+
+
 <% if @configurable: %>
 	<div class="options">
-		<h3>Control</h3>
+		<div class="wrapper">
+		<h3>Options</h3>
 		<span data-option="access" class="option"><%= @slide.Access_Name() %></span>
 		<span data-option="width" class="option"><%= @slide.Width %>px</span>
 	</div>
+	</div>
+
 <% end %>
 
+<h3>Route</h3>
 
-<h3>Menu</h3>
+<% if @editable: %>
+	<input placeholder="new route"/>
+<% end %>
+
 <% for link in @slide.Links: %>
 	<div data-id="<%= link.id %>" class="item">
 		<span class="link" ><%= link.name %></span>
@@ -17,8 +26,7 @@
 			<span class="del">x</span>
 		<% end %>
 	</div>
+	
 <% end %>
-	<% if @editable: %>
-		<input placeholder="new item"/>
-	<% end %>
+
 </div>

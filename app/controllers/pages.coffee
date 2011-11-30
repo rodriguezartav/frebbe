@@ -1,7 +1,7 @@
 Spine = require('spine')
 
 Slides    = require('controllers/components/slides')
-Social    = require('controllers/components/social')
+Panel    = require('controllers/components/panel')
 
 class Pages extends Spine.Controller
   className: 'pages'
@@ -9,15 +9,15 @@ class Pages extends Spine.Controller
   constructor: ->
     super
     @slides = new Slides
-    @social = new Social
+    @panel = new Panel
 
-    @append  @slides
+    @append  @panel , @slides
     
     @active (id) ->
       @slides.show_slide id
         
   set_height: (height) ->
     @slides.set_height height
-    @social.set_height height
+    @panel.set_height height
 
 module.exports = Pages

@@ -8,5 +8,18 @@
 		<p><%= @slide.Body %></p>
 		<textarea incremental="true" autofocus class=edit><%= @slide.Body %></textarea>
 	</div>
+	
+	<div class="media_wrapper"></div>
+	
+	<% if @editable: %>
+		<div class="prompt">
+			<span>+</span>
+			<p> < add from gallery</p>
+		</div>
+	<% end %>
+	
 </div>
+
+
+
 

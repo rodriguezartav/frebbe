@@ -2,11 +2,15 @@
 	<h1>Gallery</h1>
 </header>
 
-<div class="type">
-	<span data-type="image">Image</span>
-	<span data-type="video">Video</span>
-	<span data-type="embed">Embed</span>
-	<span data-type="page">Web Page</span>
+<div class="select">
+  <div class="type">
+  	<span data-type="image">Image</span>
+  	<span data-type="video">Video</span>
+  	<span data-type="embed">Embed</span>
+  	<span data-type="page">Web Page</span>
+  </div>
+  <div class="list">
+  </div>
 </div>
-<div class="list">
+
 </div>

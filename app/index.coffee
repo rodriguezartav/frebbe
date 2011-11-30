@@ -6,8 +6,7 @@ Frebbe    = require('controllers/frebbe')
 Popup    = require('controllers/popup')
 Pages    = require('controllers/pages')
 Header    = require('controllers/header')
-Info    = require('controllers/info')
-
+Info    = require('controllers/components/info')
 
 Slide    = require('models/slide')
 User    = require('models/user')
@@ -30,6 +29,7 @@ class App extends Spine.Controller
     @pages = new Pages
     @frebbe = new Frebbe
     @popup = new Popup
+
       
     @manager = new Manager(@frebbe, @pages)
     @append @header , @info , @frebbe , @pages , @popup
@@ -56,7 +56,14 @@ class App extends Spine.Controller
 
   on_resize: =>    
     height = $(window).height()
-    height -= 60
+    width = $(window).width()
+
+    App.height = height
+    App.width = width
+    
+    Spine.trigger "resize"
+    
+    height -= 40
     @pages.set_height height
     @frebbe.set_height height
 

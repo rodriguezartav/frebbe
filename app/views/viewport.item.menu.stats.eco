@@ -1,0 +1,33 @@
+<div class="stats">
+
+	<div class="item ">
+		<span class="points">33</span>
+		<span>points</span>
+	</div>
+
+	<div class="item ">
+		<span class="points">16</span>
+		<span>follows</span>
+	</div>
+
+	<div class="item ">
+		<span class="points">33</span>
+		<span>visits</span>
+	</div>
+
+	<div class="item ">
+		<span class="points">!!!</span>
+		<span>vote</span>
+	</div>
+
+	<div class="item ">
+		<span class="points">(o)</span>
+		<span>follow</span>
+	</div>
+
+	<div class="item ">
+		<span class="points">@</span>
+		<span>share</span>
+	</div>
+
+</div>

@@ -1,7 +1,7 @@
 Spine = require('spine')
 
 Browser    = require('controllers/components/browser')
-Social    = require('controllers/components/social')
+#Social    = require('controllers/components/social')
 
 class Frebbe extends Spine.Controller
   className: 'frebbe'
@@ -9,11 +9,11 @@ class Frebbe extends Spine.Controller
   constructor: ->
     super
     @browser = new Browser
-    @social = new Social
-    @append @social  ,  @browser
+ #   @social = new Social
+  #  @append @social  ,  @browser
 
   set_height: (height) ->
     @browser.set_height height
-    @social.set_height height
+   # @social.set_height height
 
 module.exports = Frebbe

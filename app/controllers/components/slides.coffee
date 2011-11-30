@@ -1,115 +1,10 @@
 Spine    =  require('spine')
 Slide    =  require('models/slide')
 User    =  require('models/user')
+Social = require('controllers/components/social')
+Menu = require('controllers/components/menu')
+Content = require('controllers/components/content')
 
-class Media extends Spine.Controller
-  className: 'box_wrapper'
-  
-  elements:
-    "textarea" : "textarea"
-    ".content" : "content"
-  
-  events:
-    "click .prompt>span"  :  "on_plus_click"
-      
-  constructor: ->
-    super
-
-  render: (media) ->
-    @html require('views/viewport.item.content.media.image')(media) if media.Type == "image"
-
-  render_owner: =>
-    @append require('views/viewport.item.content.media.add')
-
-  on_plus_click: (e) =>
-    @log e
-    Spine.trigger "show_popup" , "gallery"
-    Spine.bind "popup_response" , @on_popup_response
-  
-  on_popup_response: (response) =>
-    @add_image(response.object , response.options ) if response.action == true and response.type == "image"
-    
-  add_image: (image , options ) =>
-    @trigger "change" , image , options
-
-class Menu extends Spine.Controller
-  className: 'menu'
-
-  events:
-     "click span.option" : "on_option_click"
-     "click span.link" : "on_menu_link_click"
-     "click span.del" : "on_menu_del_click"
-     "change input" : "on_input"
-
-  constructor: ->
-    super
-
-  render: (slide) =>
-    renderObj = {slide: slide , editable: @editable , configurable: @configurable}
-    @html require('views/viewport.item.menu')(renderObj)
-
-  on_option_click: (e) =>
-     target = $(e.target)
-     current_user = User.current
-     option = target.attr "data-option"
-     @trigger "change" , option
-
-   #click on a menu item
-   on_menu_link_click: (e) =>
-     target = $(e.target).parent()
-     @trigger "click" , target.attr "data-id"
-
-   #click on a menu item
-   on_menu_del_click: (e) =>
-     target = $(e.target).parent()
-     @trigger "delete" , target.attr "data-id"
-
-   #change to menu input, which creates a new item/slide
-   #binds this item to fetch_success of new item
-   on_input: (e) =>
-     target = $(e.target)
-     @trigger "create" , target.val()
-
-class Content extends Spine.Controller
-  className: 'content'
-
-  events:
-    "click .editable" : "on_editable_click"
-    "change .editable" : "on_editable_change"
-    "blur .editable" : "on_editable_blur"
-
-  constructor: ->
-    super
-
-  render: (slide) =>
-    @el.width slide.Width
-    renderObj = {slide: slide , editable: @editable}
-    @html require('views/viewport.item.content')(renderObj)
-
-  #triggers editing
-  on_editable_click: (e) ->
-    if @editable 
-      target = $(e.target)
-      parent = target.parent()
-      parent.addClass "editing"
-      parent.last().select()
-
-  #triggers save
-  on_editable_change: (e) ->
-    if @editable
-      target = $(e.target)
-      parent = target.parent()
-      type = parent.attr('data-field')
-      value = target.val()
-      parent.find(':first-child').html value
-      @trigger "change" , {type: type , value: value }
-    target.blur()
-
-  #resets state when change or exit input/textarea
-  on_editable_blur: (e) ->
-    target = $(e.target)
-    parent = target.parent()
-    parent.removeClass "editing"
 
 class Item extends Spine.Controller
   className: 'item heightable'
@@ -128,6 +23,10 @@ class Item extends Spine.Controller
 
     @content = new Content
     @content.bind "change" , @on_content_change
+    @content.bind "change_media" , @on_media_change
+
+    @social = new Social
+    @social.bind "re_render" , @on_social_change
 
     @html require('views/viewport.item')
 
@@ -137,6 +36,7 @@ class Item extends Spine.Controller
       Slide.unbind "reload" , @render
       @content.release()
       @menu.release()
+      @social.release()
 
   #fetches from model and sets binding
   fetch: ->
@@ -146,8 +46,8 @@ class Item extends Spine.Controller
   #resets binding and receives data from model ( formated as slide)
   #it also triggers the item_rendered event so that parent can adjust widths
   fetch_success: (slide) =>
-    @html @content
-    @append @menu
+    @html @social
+    @append @content , @menu
     Slide.unbind "fetch_success" , @fetch_success
     @slide = slide
     @slide.set_parent @parent_item.slide if @parent_item and !@slide.Parent
@@ -176,12 +76,14 @@ class Item extends Spine.Controller
     if @slide
       @menu.render @slide
       @content.render @slide
+      @social.render @slide
 
   on_menu_change: (option) =>
-     @slide.rotate_width() if option == "width"
-     @slide.rotate_access(current_user.Access) if option == "access"
-     @render()
-     @trigger "item_rendered" if option == "width"
+    current_user = User.current  
+    @slide.rotate_width() if option == "width"
+    @slide.rotate_access(current_user.Access) if option == "access"
+    @render()
+    @trigger "item_rendered" if option == "width"
     
   on_menu_click: (name) =>
     @trigger "create_new_item" , @ , name
@@ -221,6 +123,13 @@ class Item extends Spine.Controller
     @slide.save()
     @render()
     Spine.trigger "go_to_item" , @
+
+  on_media_change: (media) =>
+    @slide.Media = media
+    @slide.save()
+
+  on_social_change: =>
+    @social.render(@slide)
 
 class Viewport extends Spine.Controller
   className: 'viewport '
@@ -271,9 +180,18 @@ class Viewport extends Spine.Controller
     new_width = 0
     for item in @items
       width = 0
-      width = item.slide.Width + 261
+      width = item.slide.Width + Menu.width + Social.width
       new_width += width
+      last_width = item.el.width()
+    canvas_width = @el.parent().width()
+    final_width = canvas_width - last_width - 200
+    new_width +=  final_width if final_width > 0
+    
     @el.width new_width
+    @adjust_scroll()
+
+  adjust_scroll: =>
+    @el.animate({ scrollLeft: "-=3000" }, "slow");
 
   remove_sections_after: (count) =>
     index =  @items.length - 1
@@ -299,7 +217,9 @@ class Slides extends Spine.Controller
     super
     @viewport = new Viewport
     @append @viewport
-    
+    Spine.bind "resize" , =>
+      @viewport.adjust_width()
+
   show_slide: (id) ->
     @viewport.create_new_item null , id
 
@@ -307,6 +227,6 @@ class Slides extends Spine.Controller
   #items uses height of 100%
   set_height: (height) ->
     @el.height height
-    @viewport.set_height height
+    @viewport.set_height height - 7
     
 module.exports = Slides

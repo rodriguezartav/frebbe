@@ -1,14 +1,9 @@
-<h1>Frebbe</h1>
+	<h1>Frebbe</h1>
+ 
+
 <div class="user_box">
-	of <%= @user.Name %>
+	by <%= @user.Name %>
 </div>
 <div class="login_box">
 
-
-	<span>Login with Twitter</span>
-	<span>Login with Facebook</span>
-	
-	<span class="admin">as admin</span>
-	<span class="super">as super</span>
-	<span class="user">as user</span>
 </div>

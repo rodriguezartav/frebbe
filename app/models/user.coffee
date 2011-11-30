@@ -1,13 +1,18 @@
 class User extends Spine.Model
-  @configure "User" ,  "Name" , "Username" , "Password" , "Access"
+  @configure "User" ,  "Name" , "Username" , "Password" , "Access" , "Icon"
   @extend Spine.Model.Ajax.Methods
 
   @current = null
 
   convert_to_user: =>
-    @Name= "Active Anonymous User"
+    @Name= "User"
     @Access = 2
     @save()
+    
+  @find_or_fetch_owner: (owner) ->
+    user = User.findByAttribute("Username" , owner)
+    User.fetch owner if !user
+    return user
     
   @set_current: (user) ->
     @current = user
@@ -15,14 +20,15 @@ class User extends Spine.Model
 
   @create_anonymous: ->
     User.create
-      Name: "Anonymous User"
+      Name: "a13 (anonymous)"
       Username: "anonymous" + Math.random() + "@frebbe.com"
       Password: ""
+      Icon: "stock"
       Access: 3
 
-  @fetch: ->
+  @fetch: (owner) ->
    params = 
-     data: {tags: ""}
+     data: {owner: owner}
      processData: true
 
    @ajax().fetch(params)
