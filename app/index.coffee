@@ -15,7 +15,6 @@ Mock = require('lib/mock')
 Slide_Hook    = require('hooks/slide_hook')
 User_Hook    = require('hooks/user_hook')
 
-
 class App extends Spine.Controller
 
   constructor: ->
